@@ -1,0 +1,10 @@
+fairy_game_test:
+    resource: "@FairyGameTestBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
