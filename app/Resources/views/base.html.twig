@@ -1,14 +1,91 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-    <h1>Template</h1>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fairy game</title>
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')  }}">
+        <link rel="stylesheet" href="{{ asset('css/design.css') }}">
+    {% endblock %}
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ path('fg_homepage') }}">Fairy game</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li><a href="{{ path('fos_user_profile_show') }}">Bienvenue {{ app.user.username }}</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                {%  else %}
+                    <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                    <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="{{ path('fg_homepage') }}">Vue d'ensemble <span class="sr-only">(current)</span></a></li>
+                <li><a href="index.php?pages=geography">Geographie</a></li>
+            </ul>
+            <!-- Personel -->
+            <ul class="nav nav-sidebar">
+                <li><a href="index.php?pages=city">Ville</a></li>
+                <li><a href="index.php?pages=cityMission">Missions disponibles</a></li>
+                <li><a href="index.php?pages=missionProgress">Missions en cours</a></li>
+                <li><a href="index.php?pages=cityShop">Magasins</a></li>
+            </ul>
+            <!-- Guilde -->
+            <ul class="nav nav-sidebar">
+                <li><a href="index.php?pages=guild">Guilde</a></li>
+                <li><a href="index.php?pages=guildhouse">Maison de guilde</a></li>
+                <li><a href="index.php?pages=guildMission">Missions de guilde</a></li>
+                <li><a href="index.php?pages=guildShop">Magasin de guilde</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-7 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% block body %}{% endblock %}
+        </div>
+
+        {% block javascripts %}
+            <script src="{{ asset('javascript/bootstrap.min.js/design.css') }}"></script>
+        {% endblock %}
+
+        <!--{login=
+        <div class="col-sm-3 col-sm-offset-11 col-md-1 sidebar right" align="center">
+        </div>
+        -}
+        {/login}
+        -->
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+</body>
 </html>

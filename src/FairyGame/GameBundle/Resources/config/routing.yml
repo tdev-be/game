@@ -1,0 +1,7 @@
+fg_homepage:
+  path: /home
+  defaults: { _controller:FairyGameGameBundle:Default:home }
+
+fg_index:
+  path: /
+  defaults: { _controller:FairyGameGameBundle:Default:index }

@@ -1,10 +1,9 @@
-fairy_game_test:
-    resource: "@FairyGameTestBundle/Controller/"
-    type:     annotation
-    prefix:   /
+fairy_game_game:
+    resource: "@FairyGameGameBundle/Resources/config/routing.yml"
 
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
